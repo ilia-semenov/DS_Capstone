@@ -27,11 +27,13 @@ loadCorpus<-function(path,pattern){
 }
 
 
+
+
 corpusInfo<-function(corpus){
         info<-c()
         for (i in 1:length(names(corpus))) {
                 doc<-corpus[[i]][[1]]
-                size<-as.numeric(object.size(doc))/1024
+                size<-as.numeric(object.size(doc))/1024/1024
                 nlines<-length(doc)
                 chars<-sapply(doc, nchar)
                 nchars<-sum(chars)
@@ -176,7 +178,7 @@ wordCloud<-function(uni,bi,tri){
         cfreq<-sort(c(ufreq,bfreq,tfreq),decreasing=T)
         wcl<-wordcloud(names(cfreq),cfreq,
                        max.words = 50, scale=c(5,0.5), 
-                  colors=pal)
+                  colors= pal <- brewer.pal(9,"BuGn"))
         return(wcl)
 }
 
@@ -206,8 +208,6 @@ uni_freqw<-wdsChart(uni_dtm[[2]],"Unigrams")
 bi_freqw<-wdsChart(bi_dtm[[2]],"Bigrams")
 tri_freqw<-wdsChart(tri_dtm[[2]],"Trigrams")
 
-
-   
 ```
 
 
